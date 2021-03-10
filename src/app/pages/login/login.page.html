@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Login</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/'" [mode]="'md'"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-icon name="person" style="margin-right: 15px;"></ion-icon>
+      <ion-input [(ngModel)]="usuario" type="text" placeholder="Usuario" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock-closed" style="margin-right: 15px;"></ion-icon>
+      <ion-input [(ngModel)]="pwd" type="password" placeholder="Contraseña" required></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="bar-stable">
+  <ion-toolbar>
+    <div style="text-align: center; margin-bottom: 16px; margin-top: 10px">
+      <ion-button (click)="login()" style="margin-top: 10px;" expand="block"  color="tertiary">Login</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

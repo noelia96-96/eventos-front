@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Registro</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/'" [mode]="'md'"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<form action="registerForm">
+
+    <ion-item>
+      <ion-icon name="person" style="margin-right: 15px;"></ion-icon>
+      <ion-input [(ngModel)]="usuario" name="usuario" type="text" placeholder="*Usuario" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock-closed" style="margin-right: 15px;"></ion-icon>
+      <ion-input [(ngModel)]="pwd" #passwordEyeRegister  name="contraseña" type="password" placeholder="*Contraseña" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="mail" style="margin-right: 15px;"></ion-icon>
+      <ion-input [(ngModel)]="email" name="email" type="text" placeholder="*Email" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="pulse" style="margin-right: 15px;"></ion-icon>
+      <ion-input [(ngModel)]="edad" name="edad" type="number" placeholder="*Edad" required></ion-input>
+    </ion-item>
+ <ion-button (click)="registro()" disabled="registerForm.valid" style="margin-top: 10px;" expand="block"  color="primary"><strong>Registrar</strong></ion-button>
+</form>
+</ion-content>
+
+<!-- <ion-footer class="bar-stable">
+  <ion-toolbar>
+    <div style="text-align: center; margin-bottom: 16px; margin-top: 10px"> -->
+      
+    <!-- </div>
+  </ion-toolbar>
+</ion-footer> -->

@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title>
+      Registrar Evento
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label><b>Nombre creador: </b></ion-label>
+      <ion-label>{{this.usuario}}</ion-label>
+    </ion-item>
+     <ion-item>
+      <ion-label><b>Evento: </b></ion-label>
+      <ion-input [(ngModel)]="nombreEvento"  type="text" name="evento" required></ion-input>
+    </ion-item>
+     <ion-item>
+      <ion-label><b>Fecha: </b></ion-label>
+      <ion-datetime [(ngModel)]="fecha" min="2021" max="2023" displayFormat="DD,MMM,YYYY" pikerFormat="DD MMM YYYY" monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre" required></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer class="bar-stable">
+  <ion-toolbar color="light">
+    <div style="text-align: center;">
+  <ion-button color="secondary" style="margin-left:0%" (click)="guardar()">
+    <ion-icon name="save-outline"></ion-icon>
+    <ion-label style="margin-left: 10px;">Guardar</ion-label>
+  </ion-button>
+  <ion-button color="secondary" style="margin-left:5%" (click)="cancelar()">
+    <ion-icon name="close"></ion-icon>
+    <ion-label style="margin-left: 10px;">Cancelar</ion-label>
+  </ion-button> 
+</div>
+</ion-toolbar>
+</ion-footer>

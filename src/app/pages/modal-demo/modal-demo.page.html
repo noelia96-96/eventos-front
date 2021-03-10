@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title style="text-align: center;">
+      Editar Evento
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label><b>Evento: </b></ion-label>
+      <ion-input [(ngModel)]="eventoObtenido.nombreEvento"  type="text" name="evento" ></ion-input>
+    </ion-item>
+     <ion-item>
+      <ion-label><b>Fecha: </b></ion-label>
+      <ion-datetime [(ngModel)]="eventoObtenido.fecha" min="2021" max="2023" displayFormat="DD,MMM,YYYY" pikerFormat="DD MMM YYYY" monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"></ion-datetime>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="bar-stable">
+  <ion-toolbar color="light">
+    <div style="text-align: center;">
+  <ion-button color="primary" style="margin-left:0%" >
+    <ion-icon name="save-outline"></ion-icon>
+    <ion-label (click)="guardar()" style="margin-left: 10px;">Guardar</ion-label>
+  </ion-button>
+  <ion-button color="primary" style="margin-left:5%" (click)="cancelar()">
+    <ion-icon name="close"></ion-icon>
+    <ion-label style="margin-left: 10px;">Cancelar</ion-label>
+  </ion-button> 
+</div>
+</ion-toolbar>
+</ion-footer>

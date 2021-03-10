@@ -1,0 +1,21 @@
+<header >
+<ion-tab-button (click)="presentAlert()" expand="block" [mode]="'md'">
+    <ion-icon name="information-circle-outline" style="margin-left: 90%;  margin-top: 2%; color:gray; zoom:0.0" expand="block" [mode]="'md'"></ion-icon>
+</ion-tab-button>
+</header>
+<body class="background">
+  <div class="content-logo">
+    <img class="logo" src="/assets/icon.png" alt="">
+  </div>
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Bienvenido</h1>
+			</div>
+			<div class="login-form">
+        <ion-button [routerLink]="'/login'" style="margin-top: 10px;" expand="block" color="tertiary"><strong>Login</strong> </ion-button>
+        <ion-button  [routerLink]="'/registro'" style="margin-top: 10px;"expand="block" color="primary"><strong>Registro</strong> </ion-button>
+			</div>
+		</div>
+	</div>
+</body>

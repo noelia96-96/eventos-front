@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>
+      Mi perfil
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </ion-title>
+    
+    <ion-tab-button (click)="cerrarSesion()" [routerLink]="'/inicio'">
+        <ion-icon name="log-out-outline" style="margin-left: 90%; color: white; margin-top: -27px; position: fixed;" expand="block" [mode]="'md'"></ion-icon>
+    </ion-tab-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    
+   <ion-toolbar>
+     <ion-segment value="propio">
+        <ion-segment-button (click)="loadEventosPropios()" value="propio">
+          Mis eventos
+        </ion-segment-button>
+        <ion-segment-button  (click)="loadEventosAjenos()" value="ajeno">
+          Otros eventos
+        </ion-segment-button>
+     </ion-segment>
+   </ion-toolbar>
+
+    <ion-card *ngFor="let evento of eventosPtemp">
+      <img src="../../../assets/evento.jpg">
+
+      <ion-card-header color="light">
+        <ion-card-title style="color: rgb(61, 61, 240); text-align: center;">{{evento.nombreEvento}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content><b>Creador: </b>{{evento.creador}}</ion-card-content>
+      <ion-card-content><b></b><b>Fecha: </b>{{evento.fecha | date: 'dd/MM/yyyy'}}</ion-card-content>
+  
+      <ion-item color="light" >
+        <ion-button (click)="editarEvento(evento._id)" fill="outline" slot="end" >Editar</ion-button>
+        <ion-button (click)="borrar(evento._id)" fill="outline" slot="end" color="danger">Borrar</ion-button> 
+      </ion-item>
+    </ion-card>
+
+    <ion-card *ngFor="let evento of eventosAtemp">
+      <img src="../../../assets/eventoa.jpg">
+
+      <ion-card-header color="light">
+        <ion-card-title style="color: rgb(61, 61, 240);text-align: center;"><b>{{evento.nombreEvento}}</b></ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content><b>Creador: </b>{{evento.creador}}</ion-card-content>
+      <ion-card-content><b>Fecha: </b>{{evento.fecha | date: 'dd/MM/yyyy'}}</ion-card-content>
+  
+      <ion-item color="light">
+        <ion-button *ngIf="!evento.participantes.includes(this.usuario)" (click)="apuntarse(evento)" fill="outline" slot="end" expand="block" [mode]="'md'">Apuntarse</ion-button>
+        <ion-button *ngIf="evento.participantes.includes(this.usuario)" (click)="desapuntarse(evento)" fill="outline" slot="end" expand="block" [mode]="'md'" color="dark">Borrarse</ion-button>
+      </ion-item>
+    </ion-card>
+  </div>
+  <ion-infinite-scroll threshold="200px" (ionInfinite)="loadData($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="circular"
+    loadingText="Cargando eventos...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>
+
+
+
+<ion-footer class="bar-stable">
+  <ion-toolbar color="medium">
+    <div style="text-align: center; margin-bottom: 16px; margin-top: 10px">
+      <!-- <ion-button color="tertiary" style="margin-left:0%"> -->
+
+        <ion-button (click)="crearEvento()" fill="solid" slot="end" color="tertiary">Crear evento
+         <ion-icon name="add"></ion-icon> 
+        </ion-button>
+<!--         
+        <ion-label (click)="crearEvento()" style="margin-left: 10px;">Crear evento</ion-label>
+      </ion-button> -->
+    </div>
+  </ion-toolbar>
+</ion-footer>
+
