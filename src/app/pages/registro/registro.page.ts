@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class RegistroPage implements OnInit {
 
   constructor(private _usuarioService:UsuarioService, private _router:Router) { }
-
   
   //Datos de registro usuario
   public edad:number;
@@ -24,14 +23,14 @@ export class RegistroPage implements OnInit {
 
   //objeto data que coge los datos que estan en el formulario
   //Luego llama al metodo y cuando termina lo muestra por pantalla respuesta post
-  async registro(){
+  async registro($){
     let data = {
       edad: this.edad,
       email: this.email,
       pwd: this.pwd,
       nombre:this.usuario
     }
-
+   
     //Encriptar pwd
     //var bcrypt = require('bcryptjs');
     //var salt = bcrypt.genSaltSync(10);
@@ -39,8 +38,10 @@ export class RegistroPage implements OnInit {
     //data.pwd = hash;
     
     const resultado = await this._usuarioService.registro(data);
-    console.log(resultado);
+    
     this._router.navigate(['/inicio']);
+
+
   }
   
 }
