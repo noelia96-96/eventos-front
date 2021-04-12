@@ -24,17 +24,8 @@ public usuarioActual:any;
     });
   }
 
-/*probandoPost(dato:any){
-    return new Promise<any>((resolve, reject)=>{
-      this._http.post(`${environment.urlUsuario}postDePrueba`,dato).subscribe((resp:RespuestaPost)=>{
-          resolve(resp);
-      });
-    });
-  }*/
-
   registro(dato:any){
     return new Promise<any>((resolve, reject)=>{
-      console.log(`${environment.urlUsuario}registro`);
       this._http.post(`${environment.urlUsuario}registro`,dato).subscribe((resp:RespuestaPost)=>{
           resolve(resp);
       });
@@ -61,26 +52,12 @@ public usuarioActual:any;
     
     });
   }
+
   async compruebaSiLogado(){
     return new Promise(async resolve=>{
     
-      const token:any = await this.getToken();
-      console.log('token',token);
-    if(token.value){
-      let cabecera = new HttpHeaders({
-        'Authorization': 'Bearer2 ' + token.value
-      }); 
-      // cabecera.set('Authorization', 'Bearer ' + token.value);
-      console.log('hay token', cabecera); 
-      //llamada de metodo que hay en el servidor
-      
-      // AQUI QUITAR TOKEN Y CABECERA
-      
-      this._http.get(`${environment.urlUsuario}getUsuario`,{
-      headers:cabecera
-      }).subscribe((resp:RespuestaPost) =>{
-        console.log('Log');
-        console.log(resp);
+      this._http.get(`${environment.urlUsuario}getUsuario`,)
+      .subscribe((resp:RespuestaPost) =>{
         if(resp.status=='ok'){
           Storage.set({
             key:'token',
@@ -90,16 +67,12 @@ public usuarioActual:any;
           resolve(true);
         }
         else{
-          console.log(resp.mensaje)
+         Storage.clear();
+
           resolve(false);
         }
         
       });
-    }
-    else{
-      console.log('token invalido')
-      resolve(false);
-    }
     })
     
   }

@@ -14,7 +14,6 @@ export class RegistrarEventoPage implements OnInit {
   constructor(
     private _router: Router,
     private _eventoService:EventoService,
-    private activatedRoute : ActivatedRoute, 
     private _usuarioService:UsuarioService,
     ) { }
   public usuario:String;
@@ -24,21 +23,20 @@ export class RegistrarEventoPage implements OnInit {
   public fecha: Date;
   public participantes: string[] = [];
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this._usuarioService.compruebaSiLogado();
     this.usuario = this._usuarioService.usuarioActual.nombre;
   }
 
   async guardar(){
-    console.log('1');
     const data = {
       nombreEvento: this.nombreEvento,
-      creador: this.usuario,
+      //creador: this.usuario, El creador NO se le pasa en la costante desde el front,en el back se coge del token.
       fecha: this.fecha,
       participantes: this.participantes
     }
-    console.log(data);
-    const resultado = await this._eventoService.registrarEvento(data);
-    console.log(resultado);
+    await this._eventoService.registrarEvento(data);
+
     this._router.navigate(['/perfil']);
   }
 

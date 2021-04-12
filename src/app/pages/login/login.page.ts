@@ -3,6 +3,7 @@ import { UsuarioService } from '../../services/usuario.service';
 import { RespuestaPost } from '../../interfaces/RespuestaPost';
 import { async } from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,11 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private _usuarioService:UsuarioService, private _router:Router) { }
+  constructor(
+    private _usuarioService:UsuarioService, 
+    private _router:Router,
+    private alertController: AlertController
+    ) { }
 
   public usuario:string;
   public pwd:string;
@@ -27,27 +32,6 @@ export class LoginPage implements OnInit {
     }
   }
 
- /* async probarGet(){
-    const respuesta = await this._usuarioService.probandoGet('pepe');
-    console.log(respuesta);
-  }
-
-  async probarPost(){
-    const datos = {
-      usuario: 'noelia',
-      pwd: 'gal'
-    }
-    const respuesta:RespuestaPost = await this._usuarioService.probandoPost(datos);
-    if(respuesta.status=='ok'){
-      console.log('todo ha ido bien');
-      console.log(respuesta);
-    }
-    else{
-      console.log(respuesta.mensaje);
-    }
-      
-    }
-*/
     async login(){
       const datos = {
         nombre: this.usuario,
@@ -57,12 +41,16 @@ export class LoginPage implements OnInit {
       const respuesta:RespuestaPost = await this._usuarioService.login(datos);
       if(respuesta.status=='ok'){
         this._usuarioService.usuarioActual = datos;
-        console.log('todo ha ido bien');
-        console.log(respuesta);
         this._router.navigate(['/perfil']);
       }
       else{
-        console.log(respuesta.mensaje);
+        const alert = await this.alertController.create({
+          cssClass: 'my-custom-class',
+          backdropDismiss: false,
+          subHeader: 'No existe el usuario. Regístrate',
+          buttons: ['OK']
+        });
+        await alert.present();
       }
         
       }

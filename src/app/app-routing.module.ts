@@ -39,8 +39,27 @@ const routes: Routes = [
   {
     path: 'registrar-evento',
     loadChildren: () => import('./pages/registrar-evento/registrar-evento.module').then( m => m.RegistrarEventoPageModule)
+  },
+  {
+    path: 'seleccion-registro',
+    loadChildren: () => import('./pages/seleccion-registro/seleccion-registro.module').then( m => m.SeleccionRegistroPageModule)
+  },
+  {
+    path: 'registro-libreria',
+    loadChildren: () => import('./pages/registro-libreria/registro-libreria.module').then( m => m.RegistroLibreriaPageModule)
+  },
+  {
+    path: 'perfil-bibliofilo',
+    loadChildren: () => import('./pages/perfil-bibliofilo/perfil-bibliofilo.module').then( m => m.PerfilBibliofiloPageModule)
+  },
+  {
+    path: 'perfil-libreria',
+    loadChildren: () => import('./pages/perfil-libreria/perfil-libreria.module').then( m => m.PerfilLibreriaPageModule)
+  },
+  {
+    path: 'principal-libreria',
+    loadChildren: () => import('./pages/principal-libreria/principal-libreria.module').then( m => m.PrincipalLibreriaPageModule)
   }
-
 ];
 
 @NgModule({
